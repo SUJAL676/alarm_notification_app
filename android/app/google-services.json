@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "71337103361",
+    "project_id": "alarmnotificationapp-b618f",
+    "storage_bucket": "alarmnotificationapp-b618f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:71337103361:android:625ab5d8528d9fd44cf000",
+        "android_client_info": {
+          "package_name": "com.example.alarm_notification_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIkZaA71apGYHZ2O-UM0B4rmMMZl3rKkc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
