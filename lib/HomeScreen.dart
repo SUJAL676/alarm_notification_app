@@ -2,6 +2,7 @@ import 'package:alarm_notification_app/services/alarm_service.dart';
 import 'package:alarm_notification_app/services/notification_services.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -51,6 +52,10 @@ class _HomeScreenState extends State<HomeScreen> {
       }
 
       if (type == 'stop_alarm') {
+        NotificationService.showNotification(
+          "Alarm Triggered",
+          "Alarm is ringing",
+        );
         AlarmService.stopAlarm();
       }
     });
@@ -61,33 +66,11 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          InkWell(
-            onTap: () async {
-              print("Started");
-
-              AlarmService.startAlarm();
-            },
-            child: Text(
-              "Alarm Notification App",
-              style: TextStyle(fontSize: 20),
-            ),
-          ),
-          InkWell(
-            onTap: () async {
-              print("stop");
-
-              AlarmService.stopAlarm();
-            },
-            child: Text(
-              " StopAlarm Notification App",
-              style: TextStyle(fontSize: 20),
-            ),
-          ),
-        ],
+        children: [Lottie.asset('assets/lottie/animation1.json')],
       ),
     );
   }

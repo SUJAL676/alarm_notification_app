@@ -24,8 +24,12 @@ Future<void> firebaseBackgroundHandler(RemoteMessage message) async {
   }
 
   if (type == 'stop_alarm') {
-    await AlarmService.stopAlarm();
+    await NotificationService.showNotification(
+      "Alarm Triggered",
+      "Alarm stopped",
+    );
   }
+  await AlarmService.stopAlarm();
 }
 
 void main() async {
