@@ -1,5 +1,7 @@
 import 'package:alarm_notification_app/firebase_options.dart';
+import 'package:alarm_notification_app/services/alarm_service.dart';
 import 'package:alarm_notification_app/services/notification_services.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -41,9 +43,10 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
-  void initState() {
+  void initState()
+  {
     super.initState();
-    setupFCM();
+    // setupFCM();
   }
 
   Future<void> setupFCM() async {
@@ -63,24 +66,55 @@ class _HomeScreenState extends State<HomeScreen> {
     //   print("Foreground: ${message.data}");
     // });
 
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      print("Foreground: ${message.data}");
+    // FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    //   print("Foreground: ${message.data}");
+    //
+    //   if (message.data['type'] == 'start_alarm') {
+    //     print("display");
+    //     NotificationService.showNotification(
+    //       "Alarm Triggered",
+    //       "Start Alarm Received",
+    //     );
+    //   }
+    // });
 
-      if (message.data['type'] == 'start_alarm') {
-        print("display");
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      final type = message.data['type'];
+
+      if (type == 'start_alarm') {
         NotificationService.showNotification(
           "Alarm Triggered",
-          "Start Alarm Received",
+          "Alarm is ringing",
         );
+        // AlarmService.startAlarm();
+      }
+
+      if (type == 'stop_alarm') {
+        // AlarmService.stopAlarm();
       }
     });
   }
 
+  bool isOn = false;
+
   @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
+  Widget build(BuildContext context)
+  {
+    return Scaffold(
       body: Center(
-        child: Text("Alarm Notification App", style: TextStyle(fontSize: 20)),
+        child: Image.asset("assets/images/appstore.png"),
+        // child: InkWell(
+        //     onTap: () async {
+        //       print("Started");
+        //
+        //       final player = AudioPlayer();
+        //       await player.play(AssetSource("sounds/set.mp3"));
+        //
+        //       // AlarmService.startAlarm();
+        //
+        //       // isOn ? AlarmService.startAlarm() : Alra;
+        //     },
+        //     child: Text("Alarm Notification App", style: TextStyle(fontSize: 20))),
       ),
     );
   }
