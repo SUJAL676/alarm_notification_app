@@ -28,7 +28,11 @@ class NotificationService {
           priority: Priority.high,
         );
 
-    const DarwinNotificationDetails iosDetails = DarwinNotificationDetails();
+    const DarwinNotificationDetails iosDetails = DarwinNotificationDetails(
+      presentAlert: true,
+      presentBadge: true,
+      presentSound: true,
+    );
 
     const NotificationDetails details = NotificationDetails(
       android: androidDetails,
